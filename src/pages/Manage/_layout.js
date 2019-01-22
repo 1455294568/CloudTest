@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Layout, Menu, Breadcrumb, Icon,
+    Layout, Menu, Breadcrumb, Icon, Col, Row, Avatar
 } from 'antd';
 
 import SubMenu from 'antd/lib/menu/SubMenu';
@@ -27,11 +27,14 @@ export default class extends Component {
 
     render() {
         return (
-            <Layout style={{ minHeight: '100vh' }}>
+            <Layout>
                 <Sider
-                    collapsible
+                    collapsible={false}
                     collapsed={this.state.collapsed}
                     onCollapse={this.onCollapse}
+                    style={{
+                        position: 'fixed', left: '0', height: '100vh'
+                    }}
                 >
                     <div className={styles.logo} />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -44,7 +47,7 @@ export default class extends Component {
                             key="system"
                             title={<span><Icon type="user" /><span>系统管理</span></span>}
                         >
-                            <Menu.Item key="account"><Link to='/Manage/System/Account'/>账号管理</Menu.Item>
+                            <Menu.Item key="account"><Link to='/Manage/System/Account' />账号管理</Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="software"
@@ -60,15 +63,17 @@ export default class extends Component {
                         </SubMenu>
                     </Menu>
                 </Sider>
-                <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }} />
+                <Layout style={{ marginLeft: 200 }}>
+                    <Header style={{ background: '#fff', padding: 0 }}>
+                        <div style={{ float: 'right', padding: '0 20px 0'}}><Avatar icon="user" /></div>
+                    </Header>
                     <Content style={{ margin: '0 16px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
                         <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                            { this.props.children }
+                            {this.props.children}
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>

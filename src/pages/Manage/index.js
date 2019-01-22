@@ -1,35 +1,58 @@
 import React, { Component } from 'react';
-import { Card, Col, Row, Carousel, List } from 'antd';
+import { Card, Col, Row, Carousel, List, Icon } from 'antd';
+import { Pie } from 'react-chartjs-2';
 
 const products = ['三段式动态计泡', '二合一在线供包台', '二合一直线供包台', '两段式动态计泡', '小货快手', '到件狂扫', '快手一分四', 'HikCommLayer', '静态计泡三合一', '皮带小秤'];
-const listitem = products.map((i) => <li>{i}</li>);
+const listitem = products.map((i) => <li key={i}>{i}</li>);
 
 export default class extends Component {
     constructor(props) {
         super(props);
     }
+
+    data = {
+        labels: [
+            'Red',
+            'Green',
+            'Yellow'
+        ],
+        datasets: [{
+            data: [300, 50, 100],
+            backgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+            ],
+            hoverBackgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+            ]
+        }]
+    };
+
     render() {
         return (
             <div>
-                <div style={{ background: '#ECECEC', padding: '30px' }}>
+                <div>
                     <Row gutter={16}>
                         <Col span={4}>
-                            <Card title="快递公司" bordered={false}>15家</Card>
+                            <Card title={<span><Icon type='home' /> 快递公司</span>} bordered={false}>15家</Card>
                         </Col>
                         <Col span={4}>
-                            <Card title="网点" bordered={false}>932个</Card>
+                            <Card title={<span><Icon type='home' /> 网点</span>} bordered={false}>932个</Card>
                         </Col>
                         <Col span={4}>
-                            <Card title="总设备" bordered={false}>3691</Card>
+                            <Card title={<span><Icon type='home' /> 总设备</span>} bordered={false}>3691</Card>
                         </Col>
                         <Col span={4}>
-                            <Card title="即将到期设备" bordered={false}>22台</Card>
+                            <Card title={<span><Icon type='home' /> 即将到期设备</span>} bordered={false}>22台</Card>
                         </Col>
                         <Col span={4}>
-                            <Card title="已过期设备" bordered={false}>38台</Card>
+                            <Card title={<span><Icon type='home' /> 已到期设备</span>} bordered={false}>38台</Card>
                         </Col>
                         <Col span={4}>
-                            <Card title="软件包" bordered={false}>17个</Card>
+                            <Card title={<span><Icon type='home' /> 软件包</span>} bordered={false}>17个</Card>
                         </Col>
                     </Row>
                 </div>
@@ -56,6 +79,17 @@ export default class extends Component {
                                 <ul>{listitem}</ul>
                             </Card>
                         </Col>
+                    </Row>
+                </div>
+                <div>
+                    <Row gutter={16}>
+                        <Col span={8} />
+                        <Col span={8}>
+                            <Card title="设备接入比例" bordered={false}>
+                                <Pie data={this.data} />
+                            </Card>
+                        </Col>
+                        <Col span={8} />
                     </Row>
                 </div>
             </div>
