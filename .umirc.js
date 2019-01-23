@@ -8,7 +8,7 @@ export default {
       antd: true,
       dva: true,
       dynamicImport: false,
-      title: 'Cloud',
+      title: '云平台后台管理',
       dll: false,
       routes: {
         exclude: [       
